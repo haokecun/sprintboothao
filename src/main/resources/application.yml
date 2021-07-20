@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  http:
+    encoding:
+      charset: utf-8
+
+hao:
+  msg:  helloWorld!hkc
+
+
