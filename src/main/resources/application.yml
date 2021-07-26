@@ -4,7 +4,8 @@ spring:
   http:
     encoding:
       charset: utf-8
-
+  swagger2:
+    enabled: true
 hao:
   msg:  helloWorld!hkc
 
