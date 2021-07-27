@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @Api(description = "员工接口")
@@ -23,6 +26,13 @@ public class EmpController {
     public Emp findById(@PathVariable("id") Integer id){
         Emp emp = empService.findById(id);
         return emp;
+    }
+
+    @ApiOperation("多条件获取员工信息")
+    @GetMapping("/list")
+    public List<Map> findDepts(String deptname,Float sal){
+        List<Map> list = empService.findDepts(deptname,sal);
+        return list;
     }
 
 }

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--映射文件配置，namespace指向接口-->
-<mapper namespace="com.example.springbootdemo.mapper.EmpMapper">
+<mapper namespace="com.example.sprintbootdemo.mapper.EmpMapper">
     <!--
     select标签代表查询
     findById要与接口中的方法名对应上
@@ -11,4 +11,19 @@
     <select id="findById" parameterType="Integer" resultType="com.example.sprintbootdemo.entity.Emp">
         select * from emp where empno = #{value}
     </select>
+
+    <!--
+    resultType="java.util.Map"
+    代表将查询到的每一条记录包装成map ，key就是字段名，value就是字段值
+    LinkedHashMap可以将Map中的数据按插入时保存
+ -->
+    <select id="findDepts" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+        select * from emp e , dept d where e.deptno = d.deptno
+        <if test="pdname != null">
+            and d.dname = #{pdname}
+        </if>
+        <if test="psal != null">
+            and e.sal > #{psal}
+        </if>
+     </select>
 </mapper>

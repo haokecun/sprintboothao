@@ -18,6 +18,16 @@ public class Emp {
     private Integer deptno;
     private String dname;
 
+
+    /**
+     * 默认构造方法,添加此默认构造方法即可解决问题
+     * 创建一个新的实例 MyEntity.
+     *
+     */
+    public Emp() {
+        super();
+    }
+
     public Emp(Integer empno, String ename, String job, Integer mgr, String hiredate, double sal, Float comm, Integer deptno, String dname) {
         this.empno = empno;
         this.ename = ename;
