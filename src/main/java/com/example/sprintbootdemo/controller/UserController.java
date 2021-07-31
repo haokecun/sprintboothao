@@ -1,19 +1,26 @@
 package com.example.sprintbootdemo.controller;
 
 import com.example.sprintbootdemo.config.AppConfig;
+import com.example.sprintbootdemo.entity.User;
+import com.example.sprintbootdemo.service.UserService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Random;
 
+@Api(description = "用户接口")
 @RestController
 @Slf4j
+@RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     //单个配置字段读取
     @Value("${hao.msg}")
@@ -44,6 +51,32 @@ public class UserController {
         return  sdate;
     }
 
+    /**
+     * 初始化100条数据
+     */
+    @GetMapping("/create")
+    public void createUser(){
+        for(int i = 0; i < 100 ; i++ ){
+            User user = new User();
+            String temp = "user"+i;
+            user.setUsername(temp);
+            user.setPassword(temp);
+            Random random = new Random();
+            log.info("radom:"+random);
+            //生成一个随机的int值，该值介于[0,n)的区间
+            int sex = random.nextInt(2);
+            user.setSex((byte)sex);
+            userService.createUser(user);
+        }
+    }
 
-
+    @GetMapping("/update")
+    public void updateUser(int id){
+        User user = new User();
+        user.setId(id);
+        String temp = "update"+id;
+        user.setUsername(temp);
+        user.setPassword(temp);
+        userService.updateUser(user);
+    }
 }

@@ -19,11 +19,11 @@
  -->
     <select id="findDepts" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
         select * from emp e , dept d where e.deptno = d.deptno
-        <if test="pdname != null">
-            and d.dname = #{pdname}
+        <if test="deptname != null">
+            and d.dname = #{deptname}
         </if>
-        <if test="psal != null">
-            and e.sal > #{psal}
+        <if test="sal != null">
+            and e.sal > #{sal}
         </if>
      </select>
 </mapper>

@@ -1,9 +1,10 @@
 package com.example.sprintbootdemo;
 
-import org.mybatis.spring.annotation.MapperScan;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
+import tk.mybatis.spring.annotation.MapperScan;
 
 //在入口类启动时加载config.properties
 @PropertySource("classpath:config.properties")

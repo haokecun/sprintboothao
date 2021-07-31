@@ -11,6 +11,7 @@ import java.util.Map;
 
 @Service
 public class EmpService {
+
     @Resource
     private EmpMapper empMapper = null;
 
@@ -20,7 +21,7 @@ public class EmpService {
 
     public List<Map> findDepts(String deptname, Float sal){
         Map param = new HashMap();
-        param.put("deptno",deptname);
+        param.put("deptname",deptname);
         param.put("sal",sal);
         return empMapper.findDepts(param);
     }

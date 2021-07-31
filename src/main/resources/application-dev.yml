@@ -31,5 +31,5 @@ logging:
   level:
     com:
       example:
-        springbootdemo:
+        sprintbootdemo:
           mapper: debug
