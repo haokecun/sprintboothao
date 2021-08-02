@@ -1,13 +1,16 @@
 package com.example.sprintbootdemo.controller;
 
+import com.example.sprintbootdemo.VO.UserVO;
 import com.example.sprintbootdemo.config.AppConfig;
 import com.example.sprintbootdemo.entity.User;
 import com.example.sprintbootdemo.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -54,6 +57,7 @@ public class UserController {
     /**
      * 初始化100条数据
      */
+    @ApiOperation("新建用户")
     @GetMapping("/create")
     public void createUser(){
         for(int i = 0; i < 100 ; i++ ){
@@ -70,6 +74,13 @@ public class UserController {
         }
     }
 
+    @ApiOperation("新建用户-validated")
+    @PostMapping("/createValidated")
+    public void createUserValidated(@RequestBody @Validated UserVO userVO){
+             userService.createUserValidated(userVO);
+        }
+
+    @ApiOperation("修改用户")
     @GetMapping("/update")
     public void updateUser(int id){
         User user = new User();
@@ -78,5 +89,11 @@ public class UserController {
         user.setUsername(temp);
         user.setPassword(temp);
         userService.updateUser(user);
+    }
+
+    @ApiOperation("用户查询")
+    @GetMapping("/find")
+    public void find(){
+        userService.findExample();
     }
 }
